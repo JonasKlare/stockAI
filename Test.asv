@@ -1,0 +1,6 @@
+function err = calcError(x,y,k) 
+%Will calculate the expected k-fold error of set
+
+%Separate data into k different, but same size sets. 
+%Max size amount of times will be n - n %k
+for i = 1:k 

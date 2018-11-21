@@ -45,6 +45,7 @@ result = curr * w
 %Make Money?!?!
 bet = sign(result)
 
+calcError(full,y,2)
 
 
     
