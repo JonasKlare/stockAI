@@ -1,6 +1,6 @@
 
 %Api call to retrieve stock information
-data = webread('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&outputsize=full&apikey=WV559UNFHZPGYVMS');
+data = webread('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=FB&interval=5min&outputsize=full&apikey=WV559UNFHZPGYVMS');
 mx = cell2mat(struct2cell(data.TimeSeries_5min_));
 full = [];
 

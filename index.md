@@ -1,4 +1,5 @@
-##Stock Trading AI
+<h1>Stock Trading AI</h1>
+Testing what type of md this is.
 
 This website will be the project's page for the stock trading AI, keeping any updates on it! This AI is by no means perfect, as it assumes there is no relation between the input variables, when in actuality that's what economics is all about!!
 
