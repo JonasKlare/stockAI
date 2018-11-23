@@ -2,10 +2,10 @@ function bet = stock()
 %Api call to retrieve stock information
 data = webread('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&outputsize=full&apikey=WV559UNFHZPGYVMS');
 mx = cell2mat(struct2cell(data.TimeSeries_5min_));
+full = [];
 
-full = [zeros(size(mx)-2, 10)];
 %Used to keep track of session data (Before testing update)
-y = [zeros(size(mx)-2,1)];
+y = [];
 
 %Extract the data from these structs.  
 for i = 2:(length(mx))
