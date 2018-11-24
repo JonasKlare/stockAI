@@ -28,22 +28,24 @@ for i = 1:roundedSize
 end
 
 %do every iteration of k's being placed
-trainSize = roundedSize - (roundedSize/k)
-xtrain = []
-ytrain = []
+trainSize = roundedSize - (roundedSize/k);
+xtrain = [];
+ytrain = [];
+totalErr = 0;
 for i = 1:k
    %create the testing set
-   xtest = splits(i,:)
-   ytest = answers(i,:)
+   currErr = 0;
+   xtest = splits(i,:);
+   ytest = answers(i,:);
    %create the training set
    for j = 1:k-1
        if(i == j)
-           j = j + 1
+           j = j + 1;
        end
-       xtrain = [xtrain,splits(j,:,:)]
-       ytrain = [ytrain,answers(j,:)]
-       
+       xtrain = [xtrain,splits(j,:,:)];
+       ytrain = [ytrain,answers(j,:)]; 
    end
+   err = -1
 end
 
 
