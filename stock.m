@@ -5,12 +5,13 @@ addpath(genpath('data'))
 
 %% Data creation
 %retrieve data from MSFT
-mx = api('MSFT');
+jsonResponse = api('MSFT');
 %format matrix and create a series of correct values
-[X,y] = createMatrix(mx)
+[X,y] = createMatrix( jsonResponse )
 
 %% Singular value decomposition
-result = calcWeight(X,y);
+weights = calcWeight(X,y);
+result = findResult(weights, X);
 
 %% Section for Errors
 err = calcError(X, y, 3);
