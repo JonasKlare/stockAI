@@ -40,12 +40,13 @@ for i = 1:k
    xtest = splits(i,:,:);
    ytest = answers(i,:);
    %create the training set
-   for j = 1:k-1
+   for j = 1:k
        if(i == j)
-           j = j + 1;
+           %skip this
+       else
+         xtrain = [xtrain,splits(j,:,:)];
+         ytrain = [ytrain,answers(j,:)]; 
        end
-       xtrain = [xtrain,splits(j,:,:)];
-       ytrain = [ytrain,answers(j,:)]; 
    end
    %resize from 3d back to 2d
    xtrain = reshape(xtrain, length(xtrain),5);
@@ -56,16 +57,15 @@ for i = 1:k
    
    
    guess = zeros(1, length(ytest));
-   for i = 1:length(ytest)
+   for p = 1:length(ytest)
        samples = samples + 1;
-       guess(1,i) = sign(xtest(i,:) * w);
+       guess(1,p) = sign(xtest(p,:) * w);
    end
    
    currErr = nnz(ytest - guess);
    totalErr = totalErr + currErr;
 end
-totalErr = totalErr
-samples = samples
+
 err = totalErr / samples
 
 

@@ -3,25 +3,18 @@ addpath(genpath('input'))
 addpath(genpath('testing'))
 addpath(genpath('data'))
 
-mx = api('MS
-%% Create the SVD and make the guess
-%Use singular value decomposition to make a least squares regression
-%problem
-[u,s,v] = svd(full);
-%Calculate weights with the current data set. 
-w = v*pinv(s)*u'*y;
+%% Data creation
+%retrieve data from MSFT
+jsonResponse = api('MSFT');
+%format matrix and create a series of correct values
+[X,y] = createMatrix( jsonResponse )
 
-%Use the last entry as the feature space
-i=length(mx);
-curr = createInfo(mx(1), full, 1)
+%% Singular value decomposition
+weights = calcWeight(X,y);
+result = findResult(weights, X)
 
-
-%Calculate resultant guess of the SVD based on weights.
-result = curr * w
-%Make Money?!?!
-bet = sign(result)
 %% Section for Errors
-err = calcError(full, y, 3);
+%err = calcError(X, y, 24);
 
 
     

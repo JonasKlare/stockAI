@@ -8,7 +8,7 @@ size = length(x);
 splits = zeros(k, floor(size/k), 5); %initialize to have k columns and floor(n,k) rows. 
 answers = zeros(k,floor(size/k));
 count = 1;
-roundedSize = size - mod(size,k)
+roundedSize = size - mod(size,k);
 
 %Separate data into k different, but same size sets. 
 %Max size amount of times will be n - n %k
@@ -27,39 +27,46 @@ end
 
 %do every iteration of k's being placed
 trainSize = roundedSize - (roundedSize/k);
-xtrain = [];
-ytrain = [];
+
 
 totalErr = 0;
 samples = 0;
 for i = 1:k
    %create the testing set
    currErr = 0;
-   xtest = splits(i,:);
+   xtrain = [];
+   ytrain = [];
+   
+   xtest = splits(i,:,:);
    ytest = answers(i,:);
    %create the training set
-   for j = 1:k-1
+   for j = 1:k
        if(i == j)
-           j = j + 1;
+           %skip this
        end
-       xtrain = [xtrain,splits(j,:,:)];
-       ytrain = [ytrain,answers(j,:)]; 
+       else
+         xtrain = [xtrain,splits(j,:,:)];
+         ytrain = [ytrain,answers(j,:)]; 
+       end
    end
    %resize from 3d back to 2d
-   %xtrain = reshape(xtrain, [],size(xtrain,2),1);
+   xtrain = reshape(xtrain, length(xtrain),5);
+   xtest = reshape(xtest, length(xtest), 5);
+   
    %% Calculate guesses for the test set.
-   w = calcWeight(xtrain, ytrain)
+   w = calcWeight(xtrain, ytrain');
    
    
-   guess = zeros(length(y),1);
-   for i = 1:length(ytest)
+   guess = zeros(1, length(ytest));
+   for k = 1:length(ytest)
        samples = samples + 1;
-       guess(i) = sign(xtest(i,:) * w);
+       guess(1,k) = sign(xtest(k,:) * w);
    end
    
    currErr = nnz(ytest - guess);
    totalErr = totalErr + currErr;
 end
+
 err = totalErr / samples
 
 

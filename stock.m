@@ -11,10 +11,13 @@ jsonResponse = api('MSFT');
 
 %% Singular value decomposition
 weights = calcWeight(X,y);
-result = findResult(weights, X);
+result = findResult(weights, X)
+
+bet = sign(result)
 
 %% Section for Errors
-err = calcError(X, y, 3);
+err = 0;
+err = calcError(X, y, 4)
 
 
     
