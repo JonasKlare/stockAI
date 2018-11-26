@@ -2,10 +2,11 @@ function err = calcError(x,y,k)
 %Will calculate the expected k-fold error of set
 
 addpath(genpath('../data'))
+numFeat = 5;
 
 size = length(x);
 %TODO calculate the size of splits before looping to save efficiency
-splits = zeros(k, floor(size/k), 5); %initialize to have k columns and floor(n,k) rows. 
+splits = zeros(k, floor(size/k), numFeat); %initialize to have k columns and floor(n,k) rows. 
 answers = zeros(k,floor(size/k));
 count = 1;
 roundedSize = size - mod(size,k);
@@ -26,7 +27,6 @@ for i = 1:roundedSize
 end
 
 %do every iteration of k's being placed
-trainSize = roundedSize - (roundedSize/k);
 
 
 totalErr = 0;
@@ -49,8 +49,8 @@ for i = 1:k
        end
    end
    %resize from 3d back to 2d
-   xtrain = reshape(xtrain, length(xtrain),5);
-   xtest = reshape(xtest, length(xtest), 5);
+   xtrain = reshape(xtrain, length(xtrain),numFeat);
+   xtest = reshape(xtest, length(xtest), numFeat);
    
    %% Calculate guesses for the test set.
    w = calcWeight(xtrain, ytrain');
@@ -66,7 +66,7 @@ for i = 1:k
    totalErr = totalErr + currErr;
 end
 
-err = totalErr / samples
+err = totalErr / samples;
 
 
 
