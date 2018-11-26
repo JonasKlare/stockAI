@@ -12,6 +12,9 @@ This doesn't take into consideration the impact of each feature on another, and 
 
 From the typical resulting weights of running the program, we can see that of the 5 features we consider, opening price, closing price, intra high, intra low, and volume, the first two are very important, while the following two are about 100 times less important, and volume being even less than that.
 
+<h3>Update 3</h3>
+Estimates the error rate using k-cross validation.  Typically has around 6% error rate with the given information. I'm assuming there may be a bug inflating this rate.
+
 <h3>Update 2</h3>
 Has the foundation for testing the data it currently contains to assume some error rate about itself using k-cross validation.
 
