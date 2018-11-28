@@ -10,7 +10,29 @@ This doesn't take into consideration the impact of each feature on another, and 
 
 <h2>Findings</h2>
 
-From the typical resulting weights of running the program, we can see that of the 5 features we consider, opening price, closing price, intra high, intra low, and volume, the first two are very important, while the following two are about 100 times less important, and volume being even less than that.
+From the typical resulting weights of running the program, we can see that of the 5 features we consider, opening price, closing price, intra high, intra low, and volume, the first two are very important, while the following two are about 100 times less important, and volume being even less than that.  
+
+Deltas don't seem to improve accuracy much
+Squaring doesn't seem to improve accuracy much either.
+
+<h2>Next</h2>
+
+Build a RESTful api that can act as a wrapper for the important information from the api we are consuming.  The surface of this api will show whether or not we should bet on a certain stock, and what it's correlated strength is, while giving the range in meta data potentially.
+
+<h3>Request</h3>
+<tt> GET /predict/MSFT/minutes</tt>
+<h3>Response</h3>
+<tt>
+{
+  "data": [{
+      "stock": "MSFT"
+      "type": "minutes"
+      "prediction": "-1"
+      "confidence": ".633"
+    }]
+}
+</tt>
+
 
 <h3>Update 3</h3>
 Estimates the error rate using k-cross validation.  Typically has around 6% error rate with the given information. I'm assuming there may be a bug inflating this rate.
