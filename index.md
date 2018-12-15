@@ -33,6 +33,9 @@ Build a RESTful api that can act as a wrapper for the important information from
 }
 </tt>
 
+Another step is to test the effectiveness of it's confidence.  Making a correct prediction of up and down 94% of the time still leaves the 6% wrong.
+This could lead to big falls in the stock market if the confidence was really high for the ones that it was wrong.
+More testing will be done determining whether it has an epic fail or misclassifies 'boundary' cases.
 
 <h3>Update 3</h3>
 Estimates the error rate using k-cross validation.  Typically has around 6% error rate with the given information. I'm assuming there may be a bug inflating this rate.
