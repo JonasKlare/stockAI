@@ -1,0 +1,15 @@
+{
+  "name": "brasstacksai",
+  "version": "0.0.1",
+  "description": "The api that will handle calls to the stock market predictor",
+  "author": "Jonas Klare <code@klare.in>",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*"
+  },
+  "scripts": {
+    "zip": "zip -r ../BrassTacksAI.zip*"
+  }
+}
